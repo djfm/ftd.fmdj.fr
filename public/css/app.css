@@ -1,0 +1,67 @@
+div.unobtrusive
+{
+	display: inline-block;
+}
+
+span.blank
+{
+	display: inline-block;
+	cursor: pointer;
+	min-width: 5px;
+}
+
+span.biggy
+{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+label.postfix.success
+{
+	background-color: #5da423;
+}
+
+label.postfix.failure
+{
+	background-color: #c60f13;
+}
+
+label.nopointer
+{
+	cursor: default;
+}
+
+div#yay
+{
+	text-align: center;
+	font-size: 2em;
+}
+
+div#yay-container
+{
+	margin-top: 25px;
+	background-color: #5da423;
+	border: 1px solid black;
+}
+
+div.row.marginy
+{
+	margin-top: 10px;
+}
+
+span.discreet
+{
+	font-size: 0.8em;
+	color:#bbb;
+}
+
+div#exercise
+{
+	border: 1px solid #ccc;
+	padding:5px;
+}
+
+div#feedback
+{
+	margin-top: 20px;
+}

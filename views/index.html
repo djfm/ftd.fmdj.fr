@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html ng-app="FTD">
+	<head>
+		<link rel="stylesheet" href="http://noise.fmdj.fr/assets/foundation/css/normalize.css"></link>
+		<link rel="stylesheet" href="http://noise.fmdj.fr/assets/foundation/css/foundation.min.css"></link>
+		<link rel="stylesheet" href="/css/app.css"></link>
+		
+	</head>
+
+	<body ng-controller="FTD">
+		<h1>Fill the dots, Yo!</h1>
+		<div class="row marginy" ng-show="!playing">
+			<div class="large-3 columns">
+				<label for="source">Input your text here yo!</label>
+			</div>
+			<div class="large-9 columns">
+				<textarea id="source" ng-model="source"></textarea>
+			</div>
+		</div>
+
+		<div class="row marginy" ng-show="!playing">
+			<div class="large-3 columns">
+				<label for="prepareButton">When you're happy about it, click the nice green button!</label>
+			</div>
+			<div class="large-9 columns">
+				<button id="prepareButton" class="success" ng-click="compute()">COMPUTE</button>
+			</div>
+		</div>
+
+		<div class="row marginy" ng-show="playing">
+			<div class="large-3 columns">
+				<label>And there's your brand new exercise! Fill the dots now.</label>
+			</div>
+			<div class="large-9 columns">
+				<div id="exercise">
+					<div class="unobtrusive" ng-repeat="item in items" ng-switch="item.blank">
+						<span ng-switch-when="true">&nbsp;<span class="blank" contentEditable="true" ng-model="item.userInput" ng-change="updateScore(item)"></span>&nbsp;</span>
+						<span ng-switch-when="false">{{item.word}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" ng-show="playing">
+			<div class="large-3 columns">
+				&nbsp;
+			</div>
+			<div class="large-9 columns">
+				<span class="discreet">
+				<strong>Protip:</strong> There are no dots, it would be too easy. You can input words anywhere before a word! Cursor will do the pointy thing to warn you.</span>
+			</div>
+		</div>
+
+		<div id="feedback" class="row marginy" ng-show="playing">
+			<div class="large-3 columns">
+				<label>See how you're doing</label>
+			</div>
+			<div class="large-9 columns">
+				<div class="row">
+					<div class="large-6 columns">
+						<div class="row collapse">
+							<div class="large-6 columns">
+								<label class="nopointer prefix">Correct</label>
+							</div>
+							<div class="large-6 columns">
+								<label class="nopointer postfix success"><span class="biggy"><span class="ok">{{correct}}</span>/{{nblanks}}</span></label>
+							</div>
+						</div>
+					</div>
+					<div class="large-6 columns">
+						<div class="row collapse">
+							<div class="large-6 columns">
+								<label class="nopointer prefix">WRONG</label>
+							</div>
+							<div class="large-6 columns">
+								<label class="nopointer postfix {{ incorrect > 0 ? 'failure' : ''}}"><span class="biggy ko">{{incorrect}}</span></label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row marginy" ng-show="playing">
+			<div class="large-3 columns">
+				<label for="stopPlaying">And if you're tired of playing with me, or <a target="_blank" href="http://www.azlyrics.com/lyrics/scorpions/stilllovingyou.html">want to start over</a>, click the friendly blue button.</label>
+			</div>
+			<div class="large-9 columns">
+				<button id="stopPlaying" ng-click="playing = false">Phew!</button>
+			</div>
+		</div>
+
+		<div id="yay-container" ng-show="victory() && playing" class="row">
+			<div id="yay" class="large-12 columns">
+				VICTORY, YO!
+			</div>
+		</div>
+
+		<script src="/js/vendor/angular.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+
+</html>
